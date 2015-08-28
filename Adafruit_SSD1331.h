@@ -20,7 +20,12 @@
 #include "WProgram.h"
 #endif
 
-#ifdef __SAM3X8E__
+#if defined(__PIC32MX1XX__) || defined(__PIC32MX2XX__) || defined(__PIC32MZXX__)
+typedef volatile uint32_t RwReg 
+typedef volatile uint32_t PortReg;
+typedef uint32_t PortMask;
+#define _BV(b) (1<<(b))
+#elif definded(__SAM3X8E__)
 typedef volatile RwReg PortReg;
 typedef uint32_t PortMask;
 #define _BV(b) (1<<(b))
